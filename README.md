@@ -1,1 +1,2 @@
-# stock_notifier
+# Stock Notifier
+
