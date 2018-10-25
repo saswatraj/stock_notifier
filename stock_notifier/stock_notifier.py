@@ -23,13 +23,13 @@ class StockNotifier:
         self.stdout = stdout
         self.stderr = stderr
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.sock.bind((LOCALHOST, PORT))
+        self.sock.bind((StockNotifier.LOCALHOST, StockNotifier.PORT))
         self.sock.setblocking(0)
         self.sock.listen(1)
         self.message_to_action_map = {
-                "test" : self.test_message_action,
-                "add_ss": self.add_stock_action,
-                "remove_ss": self.remove_stock_action
+                "TEST" : self.test_message_action,
+                "ADD": self.add_stock_action,
+                "REMOVE": self.remove_stock_action
         }
         
     def test_message_action(self, data):

@@ -1,10 +1,10 @@
 import sys, socket
 from optparse import OptionParser
-from stock_notifier.stock_notifier import StockNotifier
+from . import stock_notifier
 
 def _getpid():
     try:
-        pf = file(StockNotifier.PIDFILE,'r')
+        pf = file(stock_notifier.StockNotifier.PIDFILE,'r')
         pid = int(pf.read().strip())
         pf.close()
     except IOError:
@@ -14,9 +14,9 @@ def _getpid():
 def _start():
     pid = _getpid()
     if pid:
-        sys.stdout.write("Process already running with pid: %s", pid)
+        sys.stdout.write("Process already running with pid: %s" % pid)
     else:
-        stckNtfr = StockNotifier()
+        stckNtfr = stock_notifier.StockNotifier()
         stckNtfr.start()
 
 def _add(options):
@@ -29,7 +29,7 @@ def _remove(options):
 
 def _send_message(msg):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.connect((StockNotifier.LOCALHOST, StockNotifier.PORT))
+    sock.connect((stock_notifier.StockNotifier.LOCALHOST, stock_notifier.StockNotifier.PORT))
     sock.sendall(msg)
     sock.close()
 
@@ -49,6 +49,6 @@ def main():
     if options.start:
         _start()
     elif options.add:
-        _add()
+        _add(options)
     elif options.remove:
-        _remove()
+        _remove(options)

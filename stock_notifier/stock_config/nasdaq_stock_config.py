@@ -6,11 +6,11 @@ This class abstracts the logic for getting stock data from NASDAQ.
 @author: rajsaswa
 """
 import logging, urllib2
-from Stock import Stock
+from .. import stock
 from BeautifulSoup import BeautifulSoup
-from StockConfig import StockConfig
+from . import stock_config
 
-class NasdaqStockConfig(StockConfig):
+class NasdaqStockConfig(stock_config.StockConfig):
     STOCK_URL = "https://www.nasdaq.com/"
     STOCK_QUOTE = "symbol"
     BACK_SLASH = "/"
@@ -57,10 +57,10 @@ class NasdaqStockConfig(StockConfig):
         margin = None
         arrow_container = str(bs_content.find("div", {"id": "qwidget-arrow"}))
         if "arrow-red" in arrow_container:
-            margin = Stock.STOCK_VAL_DECREASE
+            margin = stock.Stock.STOCK_VAL_DECREASE
         else:
-            margin = Stock.STOCK_VAL_INCREASE
+            margin = stock.Stock.STOCK_VAL_INCREASE
             
         logging.debug("Obtained stock margin: %s", margin)
-        return Stock(stock_symbol, stock_val_container.text, stock_diff_container.text, 
+        return stock.Stock(stock_symbol, stock_val_container.text, stock_diff_container.text, 
                      stock_diff_percentage.text, margin)
