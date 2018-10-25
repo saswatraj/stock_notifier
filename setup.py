@@ -11,7 +11,7 @@ setuptools.setup(
     description="An application that provides system notifications for changes in stock values",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/pypa/sampleproject",
+    url="https://github.com/saswatraj/stock_notifier",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 2.7",
