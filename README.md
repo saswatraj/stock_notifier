@@ -15,3 +15,25 @@ notifications.
 | 4 | Ability to start on bootup                                     | TODO                |
 | 5 | Add platform support to Linux                                  | TODO                |
 | 6 | Add platform support to Windows                                | TODO                |
+
+## Installation
+To install the stock notifier application, run a pip install:
+```sh
+pip install stock-notifier
+```
+
+## Commands
+To start monitoring run:
+```sh
+stock-notifier -s
+```
+
+To add a stock to the monitoring lists:
+```sh
+stock-notifier -a <STOCK_SYMBOL>
+```
+
+To remove a stock from the monitoring lists:
+```sh
+stock-notifier -r <STOCK_SYMBOL>
+```
